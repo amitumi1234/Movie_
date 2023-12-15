@@ -26,14 +26,11 @@ def recomnetion(movie):
     return recommended_movie_posters ,movie_titles
 st.title("Movie Recommendation System")
 
-with open('/mount/src/cbc-/model.pkl', 'rb') as file:
-    movies_dict = pickle.load(file)
+movies_dict = pickle.load(open('movie_dict.pkl', 'rb'))
+moives = pd.DataFrame(movies_dict)
 
-# Create a DataFrame from the dictionary
-movies_df = pd.DataFrame(data=movies_dict)
+similarity = pickle.load(open('similarity.pkl', 'rb'))
 
-
-similarity = "/mount/src/Movie_/similarity.pkl"
 selected_movie_name = st.selectbox(
     'Select a movie:',
     moives['title'].values)

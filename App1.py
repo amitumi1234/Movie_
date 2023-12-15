@@ -29,7 +29,11 @@ st.title("Movie Recommendation System")
 movies_dict = pickle.load(open('movie_dict.pkl', 'rb'))
 moives = pd.DataFrame(movies_dict)
 
-similarity = pickle.load(open('similarity.pkl', 'rb'))
+file_path = 'similarity.pkl'
+print("Current working directory:", os.getcwd())
+print("Is file present?", os.path.isfile(file_path))
+
+similarity = pickle.load(open(file_path, 'rb'))
 
 selected_movie_name = st.selectbox(
     'Select a movie:',

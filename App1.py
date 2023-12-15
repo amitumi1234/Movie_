@@ -26,8 +26,11 @@ def recomnetion(movie):
     return recommended_movie_posters ,movie_titles
 st.title("Movie Recommendation System")
 
-movies_dict = "/mount/src/Movie_/movies_dict.pkl"
-moives = pd.DataFrame(movies_dict)
+with open('/mount/src/cbc-/model.pkl', 'rb') as file:
+    movies_dict = pickle.load(file)
+
+# Create a DataFrame from the dictionary
+movies_df = pd.DataFrame(data=movies_dict)
 
 
 similarity = "/mount/src/Movie_/similarity.pkl"

@@ -26,12 +26,12 @@ def recomnetion(movie):
         movie_titles.append(moives.iloc[i[0]].title)  # Append to movie_titles list
     return recommended_movie_posters ,movie_titles
 st.title("Movie Recommendation System")
-
-movies_dict = joblib.load("/mount/src/movie_/movie_dict.pkl")
+model_path="/mount/src/movie_/movie_dict.pkl"
+movies_dict = joblib.load(model_path)
 moives = pd.DataFrame(movies_dict)
 
-similarity = joblib.load("/mount/src/movie_/similarity.pkl")
-
+similarity_t = "/mount/src/movie_/similarity.pkl"
+similarity =joblib.load(similarity_t)
 selected_movie_name = st.selectbox(
     'Select a movie:',
     moives['title'].values)

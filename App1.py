@@ -27,10 +27,10 @@ def recomnetion(movie):
     return recommended_movie_posters ,movie_titles
 st.title("Movie Recommendation System")
 
-movies_dict = joblib.load("e:\Work files\Movie Recommender System\archive\movie_dict.pkl")
+movies_dict = joblib.load("/mount/src/movie_/movie_dict.pkl")
 moives = pd.DataFrame(movies_dict)
 
-similarity = joblib.load("e:\Work files\Movie Recommender System\archive\similarity.pkl")
+similarity = joblib.load("/mount/src/movie_/similarity.pkl")
 
 selected_movie_name = st.selectbox(
     'Select a movie:',

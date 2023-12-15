@@ -26,14 +26,10 @@ def recomnetion(movie):
     return recommended_movie_posters ,movie_titles
 st.title("Movie Recommendation System")
 
-movies_dict = pickle.load(open('movie_dict.pkl', 'rb'))
+movies_dict = joblib.load("e:\Work files\Movie Recommender System\archive\movie_dict.pkl")
 moives = pd.DataFrame(movies_dict)
 
-file_path = 'similarity.pkl'
-print("Current working directory:", os.getcwd())
-print("Is file present?", os.path.isfile(file_path))
-
-similarity = pickle.load(open(file_path, 'rb'))
+similarity = joblib.load("e:\Work files\Movie Recommender System\archive\similarity.pkl")
 
 selected_movie_name = st.selectbox(
     'Select a movie:',

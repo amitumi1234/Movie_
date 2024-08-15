@@ -1,7 +1,9 @@
 import streamlit as st
 import pandas as pd
 import pickle
-import requests 
+import requests
+
+
 st.title('Welcome To Ibrahim Creation ')
 st.header('Creator- Mohammod Ibrahim Hossain ')
 st.image('2ac566bdad689373d124ed45b5b70209.jpg',caption="Creator")
@@ -12,7 +14,7 @@ def fetch_poster(movie_id):
     poster_path = data['poster_path']
     full_path = "https://image.tmdb.org/t/p/w500/" + poster_path
     return full_path
-def recomnetion(movie):
+def recommendation(movie):
     movies_index = moives[moives['title'] == movie].index[0]
     distance = similarity[movies_index]
     movies_list = sorted(list(enumerate(distance)), reverse=True, key=lambda x: x[1])[1:6]
@@ -20,23 +22,27 @@ def recomnetion(movie):
     recommended_movie_posters = []
     for i in movies_list:
         movie_id = moives.iloc[i[0]].movie_id
-
         recommended_movie_posters.append(fetch_poster(movie_id))
-        movie_titles.append(moives.iloc[i[0]].title)  # Append to movie_titles list
-    return recommended_movie_posters ,movie_titles
+        movie_titles.append(moives.iloc[i[0]].title)
+    return recommended_movie_posters, movie_titles
+
 st.title("Movie Recommendation System")
 
-movies_dict = pickle.load(open('E:\Work files\movie-recommendation-system\Movie-Recommendation-System\models\movie_dict.pkl', 'rb'))
+model_path = r"/mount/src/movie_/archive/src/movie_dict1.pkl2"
+
+with open(model_path, 'rb') as model_file:
+    movies_dict = pickle.load(model_file)
 moives = pd.DataFrame(movies_dict)
+similarity_path = r"/mount/src/movie_/archive/src/similarity.pkl2"
 
-similarity = pickle.load(open('E:\Work files\movie-recommendation-system\Movie-Recommendation-System\models\similarity.pkl', 'rb'))
-
+with open(similarity_path, 'rb') as similarity_file:
+    similarity = pickle.load(similarity_file)
 selected_movie_name = st.selectbox(
     'Select a movie:',
     moives['title'].values)
 
 if st.button('Show Recommendations'):
-    recommended_movie_posters, recommended_movie_titles = recomnetion(selected_movie_name)
+    recommended_movie_posters, recommended_movie_titles = recommendation(selected_movie_name)
 
     col1, col2, col3, col4, col5 = st.columns(5)
 

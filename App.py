@@ -28,12 +28,12 @@ def recommendation(movie):
 
 st.title("Movie Recommendation System")
 
-model_path = r"/mount/src/movie_/archive/src/movie_dict1.pkl2"
+model_path = r"/mount/src/movie_/archive/movie_dict.pkl"
 
 with open(model_path, 'rb') as model_file:
     movies_dict = pickle.load(model_file)
 moives = pd.DataFrame(movies_dict)
-similarity_path = r"/mount/src/movie_/archive/src/similarity.pkl2"
+similarity_path = r"/mount/src/movie_/archive/similarity.pkl"
 
 with open(similarity_path, 'rb') as similarity_file:
     similarity = pickle.load(similarity_file)

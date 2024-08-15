@@ -4,7 +4,7 @@ import pickle
 import requests 
 st.title('Welcome To Ibrahim Creation ')
 st.header('Creator- Mohammod Ibrahim Hossain ')
-st.image('My profressional photos.jpg',caption="Creator")
+st.image('2ac566bdad689373d124ed45b5b70209.jpg',caption="Creator")
 def fetch_poster(movie_id):
     url = "https://api.themoviedb.org/3/movie/{}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US".format(movie_id)
     data = requests.get(url)
@@ -26,10 +26,10 @@ def recomnetion(movie):
     return recommended_movie_posters ,movie_titles
 st.title("Movie Recommendation System")
 
-movies_dict = pickle.load(open('movie_dict.pkl', 'rb'))
+movies_dict = pickle.load(open('E:\Work files\movie-recommendation-system\Movie-Recommendation-System\models\movie_dict.pkl', 'rb'))
 moives = pd.DataFrame(movies_dict)
 
-similarity = pickle.load(open('similarity.pkl', 'rb'))
+similarity = pickle.load(open('E:\Work files\movie-recommendation-system\Movie-Recommendation-System\models\similarity.pkl', 'rb'))
 
 selected_movie_name = st.selectbox(
     'Select a movie:',
